@@ -43,8 +43,8 @@ class Solution
         Node *current = head;
         Node *nxt = head->next;
         
-        if(!nxt)return head;
-        
+                if(!nxt)return head;
+
         while(current && nxt)
         {
             previous->next=nxt;
