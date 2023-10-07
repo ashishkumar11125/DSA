@@ -12,13 +12,12 @@ public:
 	    // code here
 
 	    long long sum;
-         
-        sum = static_cast<long long> (n) * (n + 1) / 2;
-         
-        return sum;
+	    sum=static_cast <long long >(n)*(n+1)/2;
+	    	return sum;
 
 	}
 };
+
 
 //{ Driver Code Starts.
 
