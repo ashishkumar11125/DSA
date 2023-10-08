@@ -43,27 +43,40 @@ struct Node
 class Solution{
   public:
     // Should return head of the modified linked list
-    Node *sortedInsert(struct Node* head, int data) {
+    Node *sortedInsert(struct Node* head, int data) 
+    {
         // Code here
        
-         Node *current=head, *prev=NULL;
-        while(current and current->data<data) {
-            prev = current;
-            current = current->next;
+        Node *current = head, *prev = NULL;  // Initialize two pointers, 'current' and 'prev'.
+
+         // Traverse the linked list until 'current' is not NULL and 'current->data' is less than 'data'.
+        while (current != NULL && current->data < data) 
+        {
+            prev = current;  // Update 'prev' to point to the current node.
+            current = current->next;  // Move 'current' to the next node.
         }
-        if(prev==NULL) {
-            prev = new Node(data);
-            prev->next = current;
-            head = prev;
+
+// Check if 'prev' is still NULL, indicating that the new node should be inserted at the beginning of the list.
+        if (prev == NULL) 
+        {
+           prev = new Node(data);  // Create a new node with 'data'.
+           prev->next = current;  // Set the next pointer of the new node to the current head.
+           head = prev;  // Update the 'head' pointer to point to the new node.
+        } 
+// Check if 'current' is NULL, indicating that the new node should be inserted at the end of the list.
+        else if (current == NULL)
+        {
+          prev->next = new Node(data);  // Create a new node with 'data' and make it the new last node.
+        } 
+// If 'data' should be inserted between two existing nodes.
+        else
+        {
+          Node *temp = new Node(data);  // Create a new node with 'data'.
+          temp->next = current;  // Set the next pointer of the new node to 'current'.
+           prev->next = temp;  // Set the next pointer of 'prev' to the new node, effectively inserting it between 'prev' and 'current'.
         }
-        else if(current==NULL) {
-            prev->next = new Node(data);
-        } else {
-            Node *temp = new Node(data);
-            temp->next = current;
-            prev->next = temp;
-        }
-        return head;
+
+         return head;  // Return the updated head of the linked list.
     }
 };
 
