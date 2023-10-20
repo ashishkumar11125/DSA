@@ -12,21 +12,24 @@ class Solution
   public:
     int isPossible(int N, int arr[])
     {
-        // code here
-        int num = 0; // Initialize a variable to keep track of the sum of remainders.
+        int sum = 0; // Initialize a variable to keep track of the sum of remainders.
 
         for (int i = 0; i < N; i++) 
         {
-        // Calculate the remainder of each element when divided by 3 and add it to 'num'.
-
-            num += (arr[i] % 3);
+            while (arr[i] > 0)
+            {
+                sum += (arr[i] % 10); // Add the last digit of arr[i] to the sum.
+                arr[i] /= 10; // Remove the last digit from arr[i].
+            }
         }
 
-        // Check if the sum of remainders is divisible by 3 (i.e., num % 3 equals 0).
-        // If it is, return 1 (indicating it is possible), otherwise return 0.
-        return (num % 3 == 0) ? 1 : 0;
+        if (sum % 3 == 0)
+            return true; // If the sum of digits is divisible by 3, return true.
+        else 
+            return false; // Otherwise, return false.
     }
 };
+
 
 //{ Driver Code Starts.
 
